@@ -1,1 +1,0 @@
-# Authentication-demo-node-express
