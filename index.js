@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyparser = require('body-parser');
 const passport = require('passport');
+const cors = require('cors');
 //bring all files
 const auth = require('./routes/api/auth');
 const questions = require('./routes/api/questions');
@@ -9,10 +10,16 @@ const profile = require('./routes/api/profile');
 
 const app = express();
 
+const corsOptions = {
+  origin: 'http://localhost:5173', // Replace with your frontend's origin
+  optionsSuccessStatus: 200,
+};
+
 //middlewares
   //for body-parser
   app.use(bodyparser.urlencoded({extended:false}));
   app.use(bodyparser.json());
+  app.use(cors(corsOptions));
 
 //mongoDB config
 const db = require("./setup/myurl").mongoURL;
